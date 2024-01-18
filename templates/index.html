@@ -1,0 +1,33 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MP4 Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>MP4 Downloader</h1>
+    </header>
+    <div id="container">
+        <img src="{{ url_for('static', filename='logo.png') }}">
+        <h1>Download a video from YouTube</h1>
+        <div id="loadingScreen" style="display: none;">
+            Loading, please wait...
+        </div>
+        <form id="form" action="/download_video" method="post">
+            <label for="url">URL:</label><br>
+            <input type="text" id="url" name="url" required><br>
+            <input type="submit" id="submit-button" value="Download">
+        </form>
+    </div>
+<script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('form').addEventListener('submit', function() {
+                document.getElementById('loadingScreen').style.display = 'flex';
+            });
+        });
+    </script>
+</body>
+</html>
