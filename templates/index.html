@@ -24,10 +24,14 @@
     </div>
 <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('form').addEventListener('submit', function() {
-                document.getElementById('loadingScreen').style.display = 'flex';
-            });
-        });
+    document.getElementById('form').addEventListener('submit', function() {
+        document.getElementById('loadingScreen').style.display = 'flex';
+
+        setTimeout(function() {
+            document.getElementById('loadingScreen').style.display = 'none';
+        }, 7000); // 5000 milliseconds = 5 seconds
+    });
+});
     </script>
 </body>
 </html>
