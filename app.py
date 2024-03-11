@@ -18,7 +18,6 @@ def download_video():
         yt = YouTube(video_url)
         stream = yt.streams.get_highest_resolution()
 
-        # Save video to a temporary file
         temp_folder = tempfile.mkdtemp()
         temp_file_path = os.path.join(temp_folder, yt.title + '.mp4')
         stream.download(output_path=temp_folder, filename=yt.title + '.mp4')
@@ -29,4 +28,4 @@ def download_video():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
