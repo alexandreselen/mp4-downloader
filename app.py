@@ -27,5 +27,24 @@ def download_video():
         return jsonify({'error': f'Error downloading {video_url}: {str(e)}'})
 
 
+@app.route('/download_audio', methods=['POST'])
+def download_audio():
+    audio_url = request.form['audio-url']
+    try:
+        yt = YouTube(audio_url)
+        stream = yt.streams.get_audio_only()
+
+        temp_folder = tempfile.mkdtemp()
+        print(temp_folder)
+        temp_file_path = os.path.join(temp_folder, yt.title + '.mp3')
+        print(temp_file_path)
+        os.chdir(temp_folder)
+        stream.download(output_path=temp_folder, filename=yt.title + '.mp3')
+
+        return send_file(temp_file_path, as_attachment=True)
+    except Exception as e:
+        return jsonify({'error': f'Error downloading {audio_url}: {str(e)}'})
+
+
 if __name__ == '__main__':
     app.run(debug=True)
