@@ -9,28 +9,40 @@
     <header>
         <h1>MP4 Downloader</h1>
     </header>
-    <div id="container">
+    <section id="container">
         <img src="{{ url_for('static', filename='logo.png') }}">
-        <h1>Download a video from YouTube</h1>
-        <div id="loadingScreen" style="display: none;">
-            Loading, please wait...
+        <div id=loadingScreen" style="display: none;">
+                Your content is downloading, it should be quick... ⏳
         </div>
-        <form id="form" action="/download_video" method="post">
-            <label for="url">URL:</label><br>
-            <input type="text" id="url" name="url" required><br>
-            <input type="submit" id="submit-button" value="Download">
+        <h2>Download a video from YouTube</h2>
+        <form id="video-form" action="/download_video" method="post">
+            <label for="video-url">🎬</label><br>
+            <input type="text" id="video-url" name="video-url" required><br>
+            <input type="submit" id="video-submit-button" value="Download video">
         </form>
-    </div>
+
+        <h2>Download an audio from YouTube</h2>
+        <form id="audio-form" action="/download_audio" method="post">
+                <label for="audio-url">🎶</label><br>
+                <input type="text" id="audio-url" name="audio-url" required><br>
+                <input type="submit" id="audio-submit-button" value="Download audio">
+        </form>
+    </section>
 <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('form').addEventListener('submit', function() {
-        document.getElementById('loadingScreen').style.display = 'flex';
-
-        setTimeout(function() {
-            document.getElementById('loadingScreen').style.display = 'none';
-        }, 7000); // 5000 milliseconds = 5 seconds
-    });
-});
-    </script>
+                document.getElementById('video-form').addEventListener('submit', function() {
+                        document.getElementById('loadingScreen').style.display = 'flex';
+                        setTimeout(function() {
+                                document.getElementById('loadingScreen').style.display = 'none';
+                        }, 7000);
+                });
+                document.getElementById('audio-form').addEventListener('submit', function() {
+                        document.getElementById('loadingScreen')style.display='flex';
+                        setTimeout(function() {
+                                document.getElementById('loadingScreen').style.display = 'none';
+                        }, 7000);
+                });
+        });
+</script>
 </body>
 </html>
